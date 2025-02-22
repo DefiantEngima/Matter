@@ -267,7 +267,7 @@ function killGrabF()
     local hrp = char:WaitForChild("HumanoidRootPart")
     local hum = char:WaitForChild("Humanoid")
     workspace.ChildAdded:Connect(function(e)
-        if e.Name == "GrabParts" and killGrabT and e.GrabPart.WeldConstraint.Part1.Parent.Name ~= char.Name e.GrabPart.WeldConstraint.Part1.Parent.Name ~= "SaviorLiberty" then
+        if e.Name == "GrabParts" and killGrabT and e.GrabPart.WeldConstraint.Part1.Parent.Name ~= char.Name and e.GrabPart.WeldConstraint.Part1.Parent.Name ~= "SaviorLiberty" then
             e.GrabPart.WeldConstraint.Part1.Parent:FindFirstChildOfClass("Humanoid").Health = 0
         end
     end)
