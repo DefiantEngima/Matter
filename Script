@@ -101,7 +101,7 @@ textlabel = Instance.new("TextLabel")
 textlabel.Name = "textlabel"
 textlabel.TextScaled = true
 textlabel.BackgroundTransparency = 1
-local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/DefiantEngima/Rayfield/refs/heads/main/source'))()
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 --GENERALFUNCS--
 function updateCurrentBlobmanF()
     local char = plr.Character
