@@ -1,4 +1,4 @@
-local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/DefiantEngima/Rayfield/refs/heads/main/source'))()
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 --VARIABLES--
 plr = game.Players.LocalPlayer
@@ -103,6 +103,14 @@ textlabel = Instance.new("TextLabel")
 textlabel.Name = "textlabel"
 textlabel.TextScaled = true
 textlabel.BackgroundTransparency = 1
+Whitelist = {
+    "SaviorLiberty",
+    "DefyEventHelper1",
+    "DefyEventHelper2",
+    "Defiant_Alt",
+    "R0tationCurveKey",
+    "R0tationCurve",
+}
 --GENERALFUNCS--
 function updateCurrentBlobmanF()
     local char = plr.Character
@@ -240,7 +248,7 @@ function killGrabF()
     local hrp = char:WaitForChild("HumanoidRootPart")
     local hum = char:WaitForChild("Humanoid")
     workspace.ChildAdded:Connect(function(e)
-        if e.Name == "GrabParts" and killGrabT and e.GrabPart.WeldConstraint.Part1.Parent.Name ~= char.Name and not (e.GrabPart.WeldConstraint.Part1.Parent.Name == "SaviorLiberty" or e.GrabPart.WeldConstraint.Part1.Parent.Name == "R0tationCurveKey") then
+        if e.Name == "GrabParts" and killGrabT and e.GrabPart.WeldConstraint.Part1.Parent.Name ~= char.Name and not table.find(Whitelist, e.GrabPart.WeldConstraint.Part1.Parent.Name) then
             e.GrabPart.WeldConstraint.Part1.Parent:FindFirstChildOfClass("Humanoid").RigType = Enum.RigType.R15
         end
     end)
@@ -544,7 +552,7 @@ function lagF()
     local hrp = char:WaitForChild("HumanoidRootPart")
     local hum = char:WaitForChild("Humanoid")
 		for i, e in game.Players:GetPlayers() do
-			if table.find(Rayfield.Whitelist, e.Name) then
+			if table.find(Whitelist, e.Name) then
 				return
 			end
 		end
@@ -561,7 +569,7 @@ end
 
 function pingF()
 		for i, e in game.Players:GetPlayers() do
-			if table.find(Rayfield.Whitelist, p.Name) then
+			if table.find(Whitelist, p.Name) then
 				return
 			end
 		end
@@ -575,7 +583,7 @@ end
 
 function shurikenLagServerF()
 		for i, e in game.Players:GetPlayers() do
-			if table.find(Rayfield.Whitelist, p.Name) then
+			if table.find(Whitelist, p.Name) then
 				return
 			end
 		end
@@ -894,7 +902,12 @@ function permRagdollLoopF()
     permRagdollRunningS = false
     setRagdollF(false)
 end
-
+function grabBlobmanF2()
+    local char = plr.Character
+    local hrp = char:WaitForChild("HumanoidRootPart")
+    local hum = char:WaitForChild("Humanoid")
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/DefiantEngima/Rayfield/refs/heads/main/source'))()
+end
 function getBlobmanF()
     local char = plr.Character
     local hrp = char:WaitForChild("HumanoidRootPart")
@@ -1145,6 +1158,7 @@ local extendLineToggle = grabTab:CreateToggle({
     end
 })
 extendLineToggle:Set(true)
+grabBlobmanF2()
 
 local extendLineInput = grabTab:CreateInput({
     Name = "ExtendLine",
