@@ -368,7 +368,7 @@ end
 function getPlayerList()
     local playerList = {}
     for _, p in pairs(game.Players:GetPlayers()) do
-        if p ~= plr and not table.find(Rayfield.Whitelist, p.Name)  then
+        if p ~= plr and (p.Name ~= "SaviorLiberty" or p.Name ~= "R0tationCurveKey") then
             table.insert(playerList, p.Name .. " (" .. p.DisplayName .. ")")
         end
     end
