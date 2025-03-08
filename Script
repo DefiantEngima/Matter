@@ -1,3 +1,5 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
 --VARIABLES--
 plr = game.Players.LocalPlayer
 cam = workspace.CurrentCamera
@@ -101,7 +103,6 @@ textlabel = Instance.new("TextLabel")
 textlabel.Name = "textlabel"
 textlabel.TextScaled = true
 textlabel.BackgroundTransparency = 1
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 --GENERALFUNCS--
 function updateCurrentBlobmanF()
     local char = plr.Character
