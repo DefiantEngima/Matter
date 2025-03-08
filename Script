@@ -240,7 +240,7 @@ function killGrabF()
     local hrp = char:WaitForChild("HumanoidRootPart")
     local hum = char:WaitForChild("Humanoid")
     workspace.ChildAdded:Connect(function(e)
-        if e.Name == "GrabParts" and killGrabT and e.GrabPart.WeldConstraint.Part1.Parent.Name ~= char.Name and not table.find(Rayfield.Whitelist, e.GrabPart.WeldConstraint.Part1.Parent.Name) then
+        if e.Name == "GrabParts" and killGrabT and e.GrabPart.WeldConstraint.Part1.Parent.Name ~= char.Name and not (e.GrabPart.WeldConstraint.Part1.Parent.Name == "SaviorLiberty" or e.GrabPart.WeldConstraint.Part1.Parent.Name == "R0tationCurveKey") then
             e.GrabPart.WeldConstraint.Part1.Parent:FindFirstChildOfClass("Humanoid").RigType = Enum.RigType.R15
         end
     end)
