@@ -149,17 +149,7 @@ function blobDropF(blob, target, side)
         blob.BlobmanSeatAndOwnerScript.CreatureDrop:FireServer(unpack(args))
 end
 
-function silentBlobGrabF(blob, target, side)
-    local char = plr.Character
-    local hrp = char:WaitForChild("HumanoidRootPart")
-    local hum = char:WaitForChild("Humanoid")
-    local args = {
-        [1] = blob:FindFirstChild(side.."Detector"),
-        [2] = target,
-        [3] = blob:FindFirstChild(side.."Detector").AttachPlayer,
-        }
-        blob.BlobmanSeatAndOwnerScript.CreatureGrab:FireServer(unpack(args))
-end
+
 
 function updateCurrentHouseF()
     local char = plr.Character
